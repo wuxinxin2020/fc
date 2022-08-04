@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class BioClient {
 
@@ -21,7 +22,10 @@ public class BioClient {
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
 				writer.write(sdf.format(new Date()));
 				writer.flush();
+				TimeUnit.MILLISECONDS.sleep(1);
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} finally {
 				if(socket != null) {

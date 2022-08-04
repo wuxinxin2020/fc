@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 public class BioServer {
 
 	public static void main(String[] args) throws IOException {
-		ServerSocket serverSocket = new ServerSocket(6666);
+		final ServerSocket serverSocket = new ServerSocket(6666);
 		ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
 		while (true) {
 			final Socket socket = serverSocket.accept();
@@ -26,7 +26,7 @@ public class BioServer {
 			byte[] bytes = new byte[1024];
 			inputStream = socket.getInputStream();
 			int length = 0;
-			while((length = inputStream.read(bytes)) != -1 ) {
+			while((length = inputStream.read(bytes)) != -1) {
 				System.out.println(new String(bytes, 0, length));
 			}
 		} catch (IOException e) {
