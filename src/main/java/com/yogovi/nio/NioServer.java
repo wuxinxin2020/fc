@@ -17,15 +17,16 @@ public class NioServer {
 		ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
 		//创建selector
 		Selector selector = Selector.open();
-		serverSocketChannel.socket().bind(new InetSocketAddress(8888));
+		serverSocketChannel.socket().bind(new InetSocketAddress(6666));
 		//设置非阻塞
 		serverSocketChannel.configureBlocking(false);
 		//channel注册到selector
 		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+		System.out.println();
 		//循环等待客户端连接
 		while(true) {
-			if(selector.select(10000) == 0) {
-				System.out.println("服务器等待10s, 无连接");
+			if(selector.select(5000) == 0) {
+				System.out.println("服务器等待5s, 无连接");
 				continue;
 			}
 			Set<SelectionKey> selectionKeys = selector.selectedKeys();
