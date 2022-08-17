@@ -17,8 +17,8 @@ public class NettyServer {
 		 * workerGroup --> handler
 		 * 都是无限循环
 		 */
-		NioEventLoopGroup bossGroup = new NioEventLoopGroup();
-		NioEventLoopGroup workerGroup = new NioEventLoopGroup();
+		NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
+		NioEventLoopGroup workerGroup = new NioEventLoopGroup(3);
 		try {
 			//启动对象，配置参数
 			ServerBootstrap bootstrap = new ServerBootstrap();
